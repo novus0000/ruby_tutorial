@@ -1,4 +1,4 @@
-file = File.new("book.txt", "a")
+file = File.new("book.txt", "w")
 select = "temp"
 item1=5
 item2=5
@@ -11,25 +11,25 @@ while select !="exit" do
     puts("Welcome to the vending machine!")
     puts("Which one do you want to drink?")
         if item1!=0
-            print("| 1.Coke |")
+            print("| 1.Coke 500won|")
         else
             print("| 1.Sold Out |")
         end
 
         if item2!=0
-            print("| 2.Sprite |")
+            print("| 2.Sprite 600won|")
         else
             print("| 2.Sold Out |")
         end
 
         if item3!=0
-            print("| 3.Coffee |")
+            print("| 3.Coffee 700won|")
         else
             print("| 3.Sold Out |")
         end
 
         if item4!=0
-            print("| 4.Water |")
+            print("| 4.Water 400won|")
         else
             print("| 4.Sold Out |")
         end
@@ -48,7 +48,7 @@ while select !="exit" do
             else
                 item1 = item1-1
                 puts("Here is item1")
-                puts file.syswrite("1\n")
+                file.syswrite("500\n")
             end
 
         when "2"
@@ -56,7 +56,7 @@ while select !="exit" do
                 puts("item2 is already sold out, please input another number")
             else
                 item2=item2-1
-                puts file.syswrite("2\n")
+                file.syswrite("600\n")
                 puts("Here is item2")
             end
 
@@ -65,7 +65,7 @@ while select !="exit" do
                 puts("item3 is already sold out, please input another number")
             else
                 item3=item3-1
-                puts file.syswrite("3\n")
+                file.syswrite("700\n")
                 puts("Here is item3")
             end
 
@@ -74,7 +74,7 @@ while select !="exit" do
                 puts("item4 is already sold out, please input another number")
             else
                 item4 = item4-1
-                puts file.syswrite("4\n")
+                file.syswrite("500\n")
                 puts("Here is item4")
             end
 
@@ -85,21 +85,21 @@ while select !="exit" do
             puts("Please input right number 1, 2, 3 or 4 ")
     end
 
-    # if itemputs("item1")
-
     if item1==0 and item2==0 and item3==0 and item4==0
         item1=5
         item2=5
         item3=5
         item4=5
         puts("Drinks are being refilled.")
-        sum=[0,0,0,0]
+        
+        sum=0
         readfile = File.new('book.txt',"r")
         readfile.each do | line |
-            line=line.to_i
-            sum[line-1]= sum[line-1].to_i + 1
+            sum = sum + line.to_i
+            
         end
-        puts(sum)
+        puts "you have earned  " + (sum).to_s + "Won"
+
     end
 
 end
